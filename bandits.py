@@ -81,9 +81,21 @@ class BoltzmanGumbelExploration(Bandit):
         self._update_beta()
         return np.array([self.beta[i] * np.random.gumbel() for i in range(0, len(self.beta))])
 
+    @staticmethod
+    def categorical_draw(probs):
+        z = random.random()
+        cum_prob = 0.0
+        for i in range(len(probs)):
+            cum_prob += probs[i]
+            if cum_prob > z:
+                return i
+
+        return len(probs) - 1
+
     def select_arm(self):
-        z = sum([v for v in self.values])
         perturb = self.calc_perturb()
-        probs = np.array([v / z for v in self.values])
-        return np.argmax(probs + perturb)
+        return np.argmax(self.values + perturb)
+        # z = sum([v for v in self.values])
+        # probs = np.array([v / z for v in self.values])
+        # return self.categorical_draw(probs + perturb)
 

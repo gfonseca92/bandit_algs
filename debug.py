@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 random.seed(42)
-means = [0.51, 0.5, 0.5, 0.5, 0.5, 0.5]
+means = [0.5, 0.3, 0.3, 0.3, 0.3, 0.3]
 n_arms = len(means)
 random.shuffle(means)
 arms = list(map(lambda x: BernoulliArm(x), means))

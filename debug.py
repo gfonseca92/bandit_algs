@@ -27,6 +27,10 @@ for const in [0.1, 0.2, 0.3, 0.4, 0.5]:
     plt.plot(cumulative_rewards)
     # results_mtx[:, count_epsilon] = results
 
+plt.subplot(1, 2, 1)
+plt.title("Prob select best. Alg {}".format(bandit_alg.__name__))
+plt.subplot(1, 2, 2)
+plt.title("Cumulative Rewards. Alg {}".format(bandit_alg.__name__))
 plt.show()
 print("oi")
 
